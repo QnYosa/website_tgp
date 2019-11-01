@@ -1,0 +1,27 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>привет bienvenue dans les Gossips</h1>
+<h3>Voici nos plus vilains gossips</h3>
+<div class="card-deck">
+    <% @gossip.each do |gossip| %> <!-- -->
+    <div class="col-sm-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Gossip n°<%= gossip.id %></h5>
+                <p class="card-text"><%= gossip.title %></p>
+                <p class="card-text"><%= @user.find(gossip.user_id).first_name %> <%= @user.find(gossip.user_id).last_name %></p>
+                <p class="card-text"><%= link_to "Voir ce Gossip", gossip_path(gossip.id) %></p>
+                <% if current_user %>
+     <%= link_to "modifier le gossip", edit_gossip_path(gossip.id)%>
+    <% else %>
+    <li><%= link_to "Sign Up", new_user_path %> Si vous n'avez pas de compte </li>
+    <li><%= link_to "Log In", sessions_create_path %> pour se connecter </li>
+    <% end %>
+                
+            </div>
+        </div>
+    </div>
+    <% end %>
+ </div>
+

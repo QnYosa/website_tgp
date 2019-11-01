@@ -1,0 +1,10 @@
+<h1>Villes </h1>
+  </div>
+   <%  @city.each do |ville|%>
+  <ul>
+    <li class="list-group-item">
+    <%=ville.name %> </li>
+    <%= link_to "Voir la ville", city_path(ville.id)%>
+  </ul>
+</div>
+<%end%>

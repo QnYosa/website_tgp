@@ -1,0 +1,29 @@
+<html>
+<h1> Modifier le gossip </h1>
+
+<p> Titre : <%= Gossip.find(params[:id]).title %><br/>
+    Contenu : <%= Gossip.find(params[:id]).content %><br/>
+    Auteur : <%= link_to "#{User.find(Gossip.find(params[:id]).user_id).first_name} #{User.find(Gossip.find(params[:id]).user_id).last_name}", user_path(Gossip.find(params[:id]).user_id.to_i) %> <br/>
+    Créer le : <%= Gossip.find(params[:id]).created_at.to_date %><br/>
+ </p>
+
+<div>
+    <h1> Change ce potin!</h1>
+
+ <%= form_tag url_for(action: 'update'), method: "patch" do %>
+  <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %> >
+
+      <%= label_tag 'Title' %>
+      <%= text_field_tag 'title', value = @gossip.title %>
+      <br /> <br />
+
+      <%= label_tag 'Body' %>
+      <%= text_area_tag 'content', value = @gossip.content %>
+      <br /> <br />
+
+      <%= submit_tag "Valider" %>
+
+    <% end %>
+
+</div>
+</html>

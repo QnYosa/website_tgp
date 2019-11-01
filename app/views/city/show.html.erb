@@ -1,0 +1,11 @@
+<h1> <%= City.find(params[:id]).name%> </h1>
+<% @city.users.each do |ville| %>
+<%= ville.gossips%><br/>
+<% end %>
+
+<div>
+</div>
+
+<% @user.each do |utilisateur|  %>
+<%=utilisateur.gossip.content %>
+<% end  %>
